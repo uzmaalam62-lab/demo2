@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place Order</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f2f5;
+      padding: 1.5rem 1rem;
+    }
+
+    .order-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .order-card h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #1c1e21;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1c1e21;
+      margin: 1.25rem 0 0.75rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid #dddfe2;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+      color: #4b4f56;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: #ffffff;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #1877f2;
+    }
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      color: #4b4f56;
+    }
+
+    .payment-options label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .btn-order {
+      width: 100%;
+      padding: 0.85rem;
+      background-color: #1877f2;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-order:hover {
+      background-color: #166fe5;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .back-link a {
+      color: #1877f2;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="order-card">
+    <h2>Place Your Order</h2>
+    <form action="/submit-order" method="POST">
+
+      <div class="section-title">Product Details</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="product">Select Item</label>
+          <select id="product" name="product" required>
+            <option value="">-- Choose a product --</option>
+            <option value="item1">Standard Package - ₹499</option>
+            <option value="item2">Pro Package - ₹999</option>
+            <option value="item3">Enterprise Bundle - ₹1,999</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="max-width: 120px;">
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1" max="50" required>
+        </div>
+      </div>
+
+      <div class="section-title">Shipping Information</div>
+      <div class="form-group">
+        <label for="customer-name">Full Name</label>
+        <input type="text" id="customer-name" name="customer_name" placeholder="Recipient's full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Street Address</label>
+        <textarea id="address" name="address" rows="2" placeholder="House no., street, landmark" required></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="City" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pincode">PIN Code</label>
+          <input type="text" id="pincode" name="pincode" placeholder="e.g. 583101" required>
+        </div>
+      </div>
+
+      <div class="section-title">Payment Method</div>
+      <div class="payment-options">
+        <label>
+          <input type="radio" name="payment_method" value="upi" checked> UPI / QR Code
+        </label>
+        <label>
+          <input type="radio" name="payment_method" value="card"> Credit / Debit Card
+        </label>
+        <label>
+          <input type="radio" name="payment_method" value="cod"> Cash on Delivery (COD)
+        </label>
+      </div>
+
+      <button type="submit" class="btn-order">Confirm Order</button>
+    </form>
+
+    <div class="back-link">
+      <a href="login.html">Back to Login</a>
+    </div>
+  </div>
+
+</body>
+</html>
